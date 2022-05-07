@@ -1,8 +1,8 @@
-# State Management
+# 状態管理
 
-## What is State Management?
+## 状態管理とは何？
 
-Technically, every Vue component instance already "manages" its own reactive state. Take a simple counter component as an example:
+技術的には、すべての Vue コンポーネントのインスタンスはすでに自身のリアクティブな状態を「管理」しています。簡単なカウンターコンポーネントを例としてみてみましょう:
 
 <div class="composition-api">
 
@@ -50,22 +50,22 @@ export default {
 
 </div>
 
-It is a self-contained unit with the following parts:
+これは以下のような部分を持った自己完結したユニットになっています:
 
-- The **state**, the source of truth that drives our app;
-- The **view**, a declarative mapping of the **state**;
-- The **actions**, the possible ways the state could change in reaction to user inputs from the **view**.
+- **state** - アプリを駆動する source of truth
+- **view** - **state** の宣言的なマッピング
+- **actions** - **view** からのユーザー入力への反応として状態を変更できる方法 state を the possible ways the state could change in reaction to user inputs from the **view**.
 
-This is a simple representation of the concept of "one-way data flow":
+これは「1 方向データフロー」の概念の簡単な表現になっています:
 
 <p style="text-align: center">
   <img alt="state flow diagram" src="./images/state-flow.png" width="252px" style="margin: 40px auto">
 </p>
 
-However, the simplicity starts to break down when we have **multiple components that share a common state**:
+しかし、この単純さは**共通の状態を共有する複数のコンポーネント**が現れると崩れ始めます。
 
-1. Multiple views may depend on the same piece of state.
-2. Actions from different views may need to mutate the same piece of state.
+1. 複数の view が状態の同じ部分に依存する場合。
+2. 異なる view からの action が状態の同じ部分を変更する必要があるかもしれない場合。 Actions from different views may need to mutate the same piece of state.
 
 For case one, a possible workaround is by "lifting" the shared state up to a common ancestor component, and then pass it down as props. However, this quickly gets tedious in component trees with deep hierarchies, leading to another problem known as [Prop Drilling](/guide/components/provide-inject.html#prop-drilling).
 
@@ -73,7 +73,7 @@ For case two, we often find ourselves resorting to solutions such as reaching fo
 
 A simpler and more straightforward solution is to extract the shared state out of the components, and manage it in a global singleton. With this, our component tree becomes a big "view", and any component can access the state or trigger actions, no matter where they are in the tree!
 
-## Simple State Management with Reactivity API
+## Reactivity API を使用した単純な状態管理
 
 <div class="options-api">
 
